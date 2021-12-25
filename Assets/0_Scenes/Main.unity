@@ -556,27 +556,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1176583902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1965461067453534709, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
-  m_PrefabInstance: {fileID: 1797873473}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1176583903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176583902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ecaa318c77dd394489d432cb9302012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  shootingPosition: {fileID: 1797873475}
-  recoilTime: 0.2
-  fireSpeed: 500
 --- !u!850595691 &1263238970
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1031,6 +1010,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1176583903, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
+      propertyPath: recoilTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7247669018356181355, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1084,11 +1067,6 @@ PrefabInstance:
 --- !u!4 &1797873474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7247669018356181355, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
-  m_PrefabInstance: {fileID: 1797873473}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1797873475 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9072547471520148606, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
   m_PrefabInstance: {fileID: 1797873473}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1868167610

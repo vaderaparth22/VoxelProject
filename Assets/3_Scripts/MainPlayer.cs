@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainPlayer : MonoBehaviour
 {
     private PlayerControls playercontrols;
+    public PlayerControls GetPlayerControls => playercontrols;
 
     private Rigidbody m_Rigidbody;
     private CharacterController m_Controller;
@@ -17,7 +18,9 @@ public class MainPlayer : MonoBehaviour
     private float playerSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
-    
+
+    public Vector2 GetLookVector => lookVector;
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float smoothInputSpeed;

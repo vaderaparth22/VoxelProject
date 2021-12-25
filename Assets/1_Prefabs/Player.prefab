@@ -125,10 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecaa318c77dd394489d432cb9302012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1327142519841044, guid: f1f048ba27d238d4d94d494c450c3c9c, type: 3}
   shootingPosition: {fileID: 9072547471520148606}
-  recoilTime: 0.2
+  recoilTime: 0.5
   fireSpeed: 500
+  player: {fileID: 1593570229469464929}
 --- !u!1 &4354554858803454365
 GameObject:
   m_ObjectHideFlags: 0

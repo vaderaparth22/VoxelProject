@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform shootingPosition;
-    [SerializeField] private float recoilTime;
-    [SerializeField] private float fireSpeed;
+    [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected Transform shootingPosition;
+    [SerializeField] protected float recoilTime;
+    [SerializeField] protected float fireSpeed;
 
-    void Start()
+    [Space]
+    [SerializeField] protected MainPlayer player;
+
+    private float nextFireTimer;
+
+    private void Start()
     {
         Init();
     }
 
-    void Update()
+    private void Update()
     {
         Refresh();
     }
@@ -24,12 +29,24 @@ public class Weapon : MonoBehaviour
         FixedRefresh();
     }
 
+    protected virtual void Refresh() 
+    {
+        nextFireTimer += Time.deltaTime;
+
+        if(player.GetLookVector != Vector2.zero)
+        {
+            if(nextFireTimer >= recoilTime)
+            {
+                Fire();
+                nextFireTimer = 0;
+            }
+        }
+    }
+    protected virtual void FixedRefresh() { }
     protected virtual void Init()
-    {}
+    {
 
-    protected virtual void Refresh()
-    {}
+    }
 
-    protected virtual void FixedRefresh()
-    {}
+    protected virtual void Fire() { }
 }
