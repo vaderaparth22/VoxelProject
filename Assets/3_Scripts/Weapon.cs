@@ -9,8 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float recoilTime;
     [SerializeField] protected float fireSpeed;
 
-    [Space]
-    [SerializeField] protected MainPlayer player;
+    protected MainPlayer player;
 
     private float nextFireTimer;
 
@@ -45,7 +44,7 @@ public class Weapon : MonoBehaviour
     protected virtual void FixedRefresh() { }
     protected virtual void Init()
     {
-
+        player = transform.root.GetComponent<MainPlayer>();
     }
 
     protected virtual void Fire() { }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 54436072522858860}
   - component: {fileID: 135032959849244990}
   - component: {fileID: 4080065053480625248}
-  m_Layer: 0
-  m_Name: BulletMissileBlueOBJ
+  m_Layer: 6
+  m_Name: normalBullet
   m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

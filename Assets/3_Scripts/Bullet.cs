@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected GameObject muzzlePrefab;
     [SerializeField] protected GameObject impactPrefab;
 
+    private bool isUsed;
+
     void Start()
     {
         Init();
@@ -44,15 +46,35 @@ public class Bullet : MonoBehaviour
     }
 
     private void Refresh()
-    {}
+    {
+        if(transform.position.sqrMagnitude > 1000)
+            Destroy(gameObject);
+    }
 
     private void FixedRefresh()
     {
-        Vector3 direction = _rb.velocity;
+        
     }
 
     private void OnHit(Collision collision) 
     {
         GameObject impactP = Instantiate(impactPrefab, transform.position, Quaternion.identity);
+
+        ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>();
+                                                                             
+        for (int i = 1; i < trails.Length; i++)
+        {
+            ParticleSystem trail = trails[i];
+
+            if (trail.gameObject.name.Contains("Trail"))
+            {
+                trail.transform.SetParent(null);
+                Destroy(trail.gameObject, 2f);
+            }
+        }
+
+        Destroy(projectileParticle, 3f);
+        Destroy(impactP, 3.5f);
+        Destroy(gameObject);
     }
 }
