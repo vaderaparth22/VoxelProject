@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
 
         projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation);
+        projectileParticle.transform.parent = transform;
         if (muzzlePrefab)
         {
             muzzlePrefab = Instantiate(muzzlePrefab, transform.position, transform.rotation);

@@ -1012,7 +1012,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1176583903, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
       propertyPath: recoilTime
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7247669018356181355, guid: 465ef6f52716e064abc11077dbf9649f, type: 3}
       propertyPath: m_RootOrder

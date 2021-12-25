@@ -22,6 +22,6 @@ public class NormalGun : Weapon
     protected override void Fire()
     {
         GameObject bullet = Instantiate(projectilePrefab, shootingPosition.position, shootingPosition.localRotation);
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * fireSpeed);
+        bullet.GetComponent<Rigidbody>().AddForce(shootingPosition.transform.forward * fireSpeed);
     }
 }
