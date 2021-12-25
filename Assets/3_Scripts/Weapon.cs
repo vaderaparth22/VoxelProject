@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform shootingPosition;
     [SerializeField] private float recoilTime;
     [SerializeField] private float fireSpeed;
 

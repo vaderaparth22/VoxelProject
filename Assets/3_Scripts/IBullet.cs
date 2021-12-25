@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBullet
 {
-    public void Shoot();
+    public void Fire();
 }

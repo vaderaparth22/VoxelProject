@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalGun : Weapon
+public class NormalGun : Weapon, IBullet
 {
     protected override void Refresh()
     {
@@ -10,6 +10,11 @@ public class NormalGun : Weapon
     }
 
     protected override void FixedRefresh()
+    {
+        
+    }
+
+    public void Fire()
     {
         
     }
