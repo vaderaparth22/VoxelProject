@@ -1,8 +1,14 @@
 using UnityEngine;
 
+public enum PlayerState { MOVING, DASHING }
+
 public class MainPlayer : MonoBehaviour
 {
     private PlayerControls playercontrols;
+
+    [Space]
+    [SerializeField] private PlayerState currentPlayerState;
+
     public PlayerControls GetPlayerControls => playercontrols;
 
     private Rigidbody m_Rigidbody;
@@ -15,15 +21,22 @@ public class MainPlayer : MonoBehaviour
     private Vector2 smoothInputVelocity;
 
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
+    private bool dashButtonPressed;
+    private bool isDashing;
+
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
+    private float dashValue = 0;
+    private float defaultMoveSpeed;
 
     public Vector2 GetLookVector => lookVector;
+    public PlayerState CurrentPlayerState { get => currentPlayerState; set => currentPlayerState = value; }
 
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float smoothInputSpeed;
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float maxDashTime;
 
     private void Awake()
     {
@@ -42,22 +55,56 @@ public class MainPlayer : MonoBehaviour
 
     private void Start()
     {
-        m_Controller = GetComponent<CharacterController>();
+        Init();
     }
 
     void Update()
     {
-        MoveAndRotate();
+        ManagePlayerInput();
+        CheckPlayerState();
+    }
+
+    private void Init()
+    {
+        m_Controller = GetComponent<CharacterController>();
+        defaultMoveSpeed = movementSpeed;
+        CurrentPlayerState = PlayerState.MOVING;
+    }
+
+    private void ManagePlayerInput()
+    {
+        moveVector = playercontrols.m_Player_Move.ReadValue<Vector2>().normalized;
+        lookVector = playercontrols.m_Player_Look.ReadValue<Vector2>().normalized;
+        dashButtonPressed = playercontrols.m_Player_Dash.triggered;
+
+        if (moveVector != Vector3.zero && dashButtonPressed && !isDashing)
+            CurrentPlayerState = PlayerState.DASHING;
+    }
+
+    private void CheckPlayerState()
+    {
+        switch (CurrentPlayerState)
+        {
+            case PlayerState.MOVING:
+
+                MoveAndRotate();
+
+                break;
+            case PlayerState.DASHING:
+
+                MoveAndRotate();
+                Dash();
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void MoveAndRotate()
     {
-        moveVector = playercontrols.m_Player_Move.ReadValue<Vector2>().normalized;
         currentInputVector = Vector2.SmoothDamp(currentInputVector, moveVector, ref smoothInputVelocity, smoothInputSpeed);
-
-        lookVector = playercontrols.m_Player_Look.ReadValue<Vector2>().normalized;
-        //transform.position += new Vector3(moveVector.x, 0, moveVector.y);
-        //m_Rigidbody.AddForce(new Vector3(moveVector.x, 0, moveVector.y) * movementSpeed);
 
         groundedPlayer = m_Controller.isGrounded;
 
@@ -76,5 +123,21 @@ public class MainPlayer : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         m_Controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void Dash()
+    {
+        isDashing = true;
+        movementSpeed = dashSpeed;
+
+        dashValue += Time.deltaTime;
+
+        if(dashValue >= maxDashTime)
+        {
+            movementSpeed = defaultMoveSpeed;
+            dashValue = 0;
+            isDashing = false;
+            CurrentPlayerState = PlayerState.MOVING;
+        }
     }
 }

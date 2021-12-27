@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 518089201}
   - component: {fileID: 518089203}
   - component: {fileID: 518089202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 566692006}
   - component: {fileID: 566692008}
   - component: {fileID: 566692007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,13 +174,13 @@ GameObject:
   m_Component:
   - component: {fileID: 767572107}
   - component: {fileID: 767572108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocketMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &767572107
 Transform:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943396654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 5136248150677940544}
   - component: {fileID: 1978097827659113132}
   - component: {fileID: 1682117596331663048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,13 +333,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4432138938274108279}
   - component: {fileID: 1176583903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NormalGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4432138938274108279
 Transform:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 6957978203137859958}
   - component: {fileID: 1137832914339925188}
   - component: {fileID: 5605423909649990982}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: leftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9072547471520148606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6286203929380240177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8512513249080879988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 4092686857787412425}
   - component: {fileID: 8206905321573330022}
   - component: {fileID: 7027445010494023751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 5357803638978995799}
   - component: {fileID: 3207957614997046696}
   - component: {fileID: 1593570229469464929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -774,9 +774,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505a9b033b4f9a545b09b104de7b6246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayerState: 0
   movementSpeed: 10
   rotateSpeed: 1
   smoothInputSpeed: 0.1
+  dashSpeed: 30
+  maxDashTime: 0.2
 --- !u!1 &8121403666801946006
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +792,7 @@ GameObject:
   - component: {fileID: 7598844125215645853}
   - component: {fileID: 2292148078655166703}
   - component: {fileID: 5606941718124807397}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: rightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +886,7 @@ GameObject:
   - component: {fileID: 7811779572525374268}
   - component: {fileID: 7816202551096217321}
   - component: {fileID: 570911541780728351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
