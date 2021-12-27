@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: QuadFace
+  m_Name: enemyIdle
   m_Shader: {fileID: 4800000, guid: e6f9f025efa86ad4c807ab5b845f3bba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,15 +40,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 0d43fd5be3080014d8b97f47f252e8ce, type: 3}
+        m_Texture: {fileID: 2800000, guid: 13cf9a100525e114fa23a3c22726bb51, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MKGlowTex:
-        m_Texture: {fileID: 2800000, guid: 0d43fd5be3080014d8b97f47f252e8ce, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0e23012225d6c445be031c636f5e180, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0d43fd5be3080014d8b97f47f252e8ce, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0e23012225d6c445be031c636f5e180, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

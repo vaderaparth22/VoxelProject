@@ -2,17 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType { MELEE, RANGED }
+
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected Transform target;
+
+    [Space]
+    [SerializeField] protected Rigidbody _rb;
+    [SerializeField] protected CharacterController _controller;
+
+    [Header("Movement")]
+    [SerializeField] protected bool isUsingPhysics;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float rotateSpeed;
+
+    [Header("Other")]
+    [SerializeField] protected EnemyType type;
+    [SerializeField] protected float health;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float timeBetweenAttacks;
+
+    protected virtual Vector3 PlayerDistance
     {
-        
+        get
+        {
+            Vector3 distance = (target.position - transform.position);
+            return distance;
+        }
     }
 
-    // Update is called once per frame
+    protected virtual Vector3 PlayerDistanceNormalized
+    {
+        get
+        {
+            Vector3 distance = (target.position - transform.position).normalized;
+            return distance;
+        }
+    }
+
+    void Start()
+    {
+        Init();
+    }
+
     void Update()
     {
-        
+        Refresh();
+    }
+
+    void FixedUpdate()
+    {
+        FixedRefresh();
+    }
+
+    protected virtual void Init() 
+    {
+        target = FindObjectOfType<MainPlayer>().transform;
+        _controller = GetComponent<CharacterController>();
+    }
+
+    protected virtual void Refresh() 
+    {
+        RotateTowards();
+    }
+
+    protected virtual void FixedRefresh() { }
+
+    private void RotateTowards()
+    {
+        if (target)
+        {
+            Vector3 distance = PlayerDistanceNormalized;
+            Quaternion targetRotation = Quaternion.LookRotation(distance);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        }
     }
 }
