@@ -47,8 +47,9 @@ public class Bullet : MonoBehaviour
 
     private void Refresh()
     {
-        if(transform.position.sqrMagnitude > 1000)
-            Destroy(gameObject);
+        if (transform.position.sqrMagnitude > 1000)
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 
     private void FixedRefresh()
@@ -73,8 +74,11 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        Destroy(projectileParticle, 3f);
-        Destroy(impactP, 3.5f);
-        Destroy(gameObject);
+        //Destroy(projectileParticle, 3f);
+        projectileParticle.SetActive(false);
+        //Destroy(impactP, 3.5f);
+        impactP.SetActive(false);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

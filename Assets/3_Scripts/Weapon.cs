@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Transform shootingPosition;
     [SerializeField] protected float recoilTime;
     [SerializeField] protected float fireSpeed;
+    [SerializeField] protected float damage;
 
     protected MainPlayer player;
 

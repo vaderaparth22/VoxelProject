@@ -25,7 +25,6 @@ public class MainPlayer : MonoBehaviour
     private bool isDashing;
 
     private float jumpHeight = 1.0f;
-    private float gravityValue = -9.81f;
     private float dashValue = 0;
     private float defaultMoveSpeed;
 
@@ -37,6 +36,7 @@ public class MainPlayer : MonoBehaviour
     [SerializeField] private float smoothInputSpeed;
     [SerializeField] private float dashSpeed;
     [SerializeField] private float maxDashTime;
+    [SerializeField] private float gravityValue = -9.81f;
 
     private void Awake()
     {
@@ -121,7 +121,7 @@ public class MainPlayer : MonoBehaviour
             transform.forward = new Vector3(lookVector.x, 0, lookVector.y);
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        playerVelocity.y += gravityValue;
         m_Controller.Move(playerVelocity * Time.deltaTime);
     }
 
@@ -132,7 +132,7 @@ public class MainPlayer : MonoBehaviour
 
         dashValue += Time.deltaTime;
 
-        if(dashValue >= maxDashTime)
+        if (dashValue >= maxDashTime)
         {
             movementSpeed = defaultMoveSpeed;
             dashValue = 0;

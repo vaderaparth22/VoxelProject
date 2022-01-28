@@ -212,6 +212,7 @@ MonoBehaviour:
   shootingPosition: {fileID: 943396654}
   recoilTime: 0.4
   fireSpeed: 2000
+  damage: 0
 --- !u!1 &943396653
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +372,7 @@ MonoBehaviour:
   shootingPosition: {fileID: 9072547471520148606}
   recoilTime: 0.2
   fireSpeed: 2000
+  damage: 0
 --- !u!1 &2748874316211138431
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +782,7 @@ MonoBehaviour:
   smoothInputSpeed: 0.1
   dashSpeed: 30
   maxDashTime: 0.2
+  gravityValue: -15
 --- !u!1 &8121403666801946006
 GameObject:
   m_ObjectHideFlags: 0

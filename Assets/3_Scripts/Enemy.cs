@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum EnemyType { MELEE, RANGED }
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Auto-Initialized Runtime")]
     [SerializeField] protected Transform target;
-
-    [Space]
+    [SerializeField] protected NavMeshAgent _agent;
     [SerializeField] protected Rigidbody _rb;
     [SerializeField] protected CharacterController _controller;
 
@@ -59,7 +60,10 @@ public class Enemy : MonoBehaviour
     protected virtual void Init() 
     {
         target = FindObjectOfType<MainPlayer>().transform;
-        _controller = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.SetDestination(target.position);
+
+        //_controller = GetComponent<CharacterController>();
     }
 
     protected virtual void Refresh() 
@@ -69,11 +73,19 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FixedRefresh() { }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        OnGetHit(other);
+    }
+    
+    protected virtual void OnGetHit(Collider other) { }
+
     private void RotateTowards()
     {
         if (target)
         {
             Vector3 distance = PlayerDistanceNormalized;
+            distance.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(distance);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
