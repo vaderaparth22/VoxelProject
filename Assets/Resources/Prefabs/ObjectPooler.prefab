@@ -48,11 +48,11 @@ MonoBehaviour:
     amountToPool: 10
     shouldExpand: 1
   - objectToPool: {fileID: 2635262522859755769, guid: c8739ff83fc820e489b70087380c9a82, type: 3}
-    amountToPool: 10
+    amountToPool: 5
     shouldExpand: 0
   - objectToPool: {fileID: 1327142519841044, guid: f1f048ba27d238d4d94d494c450c3c9c, type: 3}
     amountToPool: 15
-    shouldExpand: 0
+    shouldExpand: 1
   pooledObjects: []
   onPoolFinished:
     m_PersistentCalls:

@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfo:
-    startSpawnAmount: 10
+    startSpawnAmount: 3
     spawnLocationParent: {fileID: 1855328476}
     listOfLiveEnemies: []
 --- !u!1 &1349670507
