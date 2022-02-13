@@ -5,10 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected GameObject projectilePrefab;
-    [SerializeField] protected Transform shootingPosition;
+    [SerializeField] protected Transform[] shootingPosition;
     [SerializeField] protected float recoilTime;
     [SerializeField] protected float fireSpeed;
     [SerializeField] protected float damage;
+
+    protected string projectileTag => projectilePrefab.tag;
 
     protected MainPlayer player;
 

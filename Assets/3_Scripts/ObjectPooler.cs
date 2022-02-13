@@ -12,17 +12,16 @@ public class ObjectPoolItem
 
 public class ObjectPooler : MonoBehaviour
 {
-
     public static ObjectPooler SharedInstance;
     public List<ObjectPoolItem> itemsToPool;
     public List<GameObject> pooledObjects;
+    public Dictionary<string, GameObject> pooledDictionary = new Dictionary<string, GameObject>();
 
-    void Awake()
+    public void Awake()
     {
         SharedInstance = this;
     }
 
-    // Use this for initialization
     void Start()
     {
         pooledObjects = new List<GameObject>();
@@ -43,6 +42,7 @@ public class ObjectPooler : MonoBehaviour
         {
             if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
             {
+                pooledObjects[i].SetActive(true);
                 return pooledObjects[i];
             }
         }
@@ -53,7 +53,7 @@ public class ObjectPooler : MonoBehaviour
                 if (item.shouldExpand)
                 {
                     GameObject obj = (GameObject)Instantiate(item.objectToPool);
-                    obj.SetActive(false);
+                    obj.SetActive(true);
                     pooledObjects.Add(obj);
                     return obj;
                 }
@@ -62,7 +62,6 @@ public class ObjectPooler : MonoBehaviour
         return null;
     }
 
-    // Update is called once per frame
     void Update()
     {
 

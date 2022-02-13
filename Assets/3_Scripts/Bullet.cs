@@ -6,15 +6,22 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody _rb;
 
-    [SerializeField] protected GameObject projectileParticle;
-    [SerializeField] protected GameObject muzzlePrefab;
-    [SerializeField] protected GameObject impactPrefab;
+    [SerializeField] protected ParticleSystem projectileParticle;
+    [SerializeField] protected ParticleSystem muzzlePrefab;
+    [SerializeField] protected ParticleSystem impactPrefab;
+    [SerializeField] protected float timerDelay = 1f;
 
     private bool isUsed;
+    private float deactivateTimer;
 
     void Start()
     {
         Init();
+    }
+
+    private void OnEnable()
+    {
+        InitEnable();
     }
 
     void Update()
@@ -32,24 +39,25 @@ public class Bullet : MonoBehaviour
         OnHit(collision);
     }
 
+    private void InitEnable()
+    {
+        deactivateTimer = timerDelay + Time.time;
+
+        if(projectileParticle) projectileParticle.Play();
+        if(muzzlePrefab) muzzlePrefab.Play();
+    }
+
     private void Init()
     {
-        _rb = GetComponent<Rigidbody>();
-
-        projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation);
-        projectileParticle.transform.parent = transform;
-        if (muzzlePrefab)
-        {
-            muzzlePrefab = Instantiate(muzzlePrefab, transform.position, transform.rotation);
-            Destroy(muzzlePrefab, 1.5f);
-        }
+        
     }
 
     private void Refresh()
     {
-        if (transform.position.sqrMagnitude > 1000)
-            //Destroy(gameObject);
+        if(Time.time > deactivateTimer)
+        {
             gameObject.SetActive(false);
+        }
     }
 
     private void FixedRefresh()
@@ -59,7 +67,7 @@ public class Bullet : MonoBehaviour
 
     private void OnHit(Collision collision) 
     {
-        GameObject impactP = Instantiate(impactPrefab, transform.position, Quaternion.identity);
+        ParticleSystem impactP = Instantiate(impactPrefab, transform.position, Quaternion.identity);
 
         ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>();
                                                                              
@@ -75,9 +83,8 @@ public class Bullet : MonoBehaviour
         }
 
         //Destroy(projectileParticle, 3f);
-        projectileParticle.SetActive(false);
-        //Destroy(impactP, 3.5f);
-        impactP.SetActive(false);
+        //projectileParticle.gameObject.SetActive(false);
+        Destroy(impactP, 3.5f);
         //Destroy(gameObject);
         gameObject.SetActive(false);
     }

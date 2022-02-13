@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Missile
-  - Enemy
   - Ground
+  - Rocket
+  - EnemyNormal
   layers:
   - Default
   - TransparentFX
