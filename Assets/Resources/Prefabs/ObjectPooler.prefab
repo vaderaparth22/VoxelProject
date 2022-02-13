@@ -47,7 +47,10 @@ MonoBehaviour:
   - objectToPool: {fileID: 1327142519841044, guid: 78f6969a565244c4ba20f9f6fb228ae1, type: 3}
     amountToPool: 10
     shouldExpand: 1
-  - objectToPool: {fileID: 2635262522859755769, guid: c9782f7bba416bd4a8133587eeba6144, type: 3}
+  - objectToPool: {fileID: 2635262522859755769, guid: c8739ff83fc820e489b70087380c9a82, type: 3}
     amountToPool: 10
-    shouldExpand: 1
+    shouldExpand: 0
   pooledObjects: []
+  onPoolFinished:
+    m_PersistentCalls:
+      m_Calls: []

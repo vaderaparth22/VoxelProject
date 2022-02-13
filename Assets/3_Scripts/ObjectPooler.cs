@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class ObjectPoolItem
@@ -17,6 +18,26 @@ public class ObjectPooler : MonoBehaviour
     public List<GameObject> pooledObjects;
     public Dictionary<string, GameObject> pooledDictionary = new Dictionary<string, GameObject>();
 
+    public UnityEvent onPoolFinished;
+
+    public void Init()
+    {
+        pooledObjects = new List<GameObject>();
+
+        foreach (ObjectPoolItem item in itemsToPool)
+        {
+            for (int i = 0; i < item.amountToPool; i++)
+            {
+                GameObject obj = (GameObject)Instantiate(item.objectToPool);
+                obj.transform.SetParent(transform);
+                obj.SetActive(false);
+                pooledObjects.Add(obj);
+            }
+        }
+
+        onPoolFinished.Invoke();
+    }
+
     public void Awake()
     {
         SharedInstance = this;
@@ -24,16 +45,7 @@ public class ObjectPooler : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-        foreach (ObjectPoolItem item in itemsToPool)
-        {
-            for (int i = 0; i < item.amountToPool; i++)
-            {
-                GameObject obj = (GameObject)Instantiate(item.objectToPool);
-                obj.SetActive(false);
-                pooledObjects.Add(obj);
-            }
-        }
+        
     }
 
     public GameObject GetPooledObject(string tag)
@@ -46,6 +58,7 @@ public class ObjectPooler : MonoBehaviour
                 return pooledObjects[i];
             }
         }
+
         foreach (ObjectPoolItem item in itemsToPool)
         {
             if (item.objectToPool.tag == tag)
@@ -59,13 +72,7 @@ public class ObjectPooler : MonoBehaviour
                 }
             }
         }
+
         return null;
-    }
-
-    void Update()
-    {
-
-
-
     }
 }

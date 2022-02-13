@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected bool isUsingPhysics;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float rotateSpeed;
+    [SerializeField] protected float gravityValue = -9.81f;
 
     [Header("Other")]
     [SerializeField] protected EnemyType type;
@@ -60,10 +61,10 @@ public class Enemy : MonoBehaviour
     protected virtual void Init() 
     {
         target = FindObjectOfType<MainPlayer>().transform;
-        _agent = GetComponent<NavMeshAgent>();
-        _agent.SetDestination(target.position);
+        //_agent = GetComponent<NavMeshAgent>();
+        //_agent.SetDestination(target.position);
 
-        //_controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
     }
 
     protected virtual void Refresh() 

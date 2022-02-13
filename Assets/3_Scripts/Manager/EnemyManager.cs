@@ -22,11 +22,22 @@ public class EnemyManager
     #endregion
 
     private EnemyInfo enemyInfo;
+    private Transform[] spawningPositions;
 
     public void Init(EnemyInfo enemyInfo)
     {
         this.enemyInfo = enemyInfo;
+
+        InitalizeSpawnLocations();
         SpawnMultiple(enemyInfo.startSpawnAmount);
+    }
+
+    private void InitalizeSpawnLocations()
+    {
+        spawningPositions = new Transform[enemyInfo.spawnLocationParent.childCount];
+
+        for (int i = 0; i < spawningPositions.Length; i++)
+            spawningPositions[i] = enemyInfo.spawnLocationParent.GetChild(i);
     }
 
     private void SpawnMultiple(int amount)
@@ -39,7 +50,7 @@ public class EnemyManager
             enemyInfo.listOfLiveEnemies.Add(e);
             e.gameObject.SetActive(true);
 
-            e.transform.position = enemyInfo.spawningPositions[posCounter].position;
+            e.transform.position = spawningPositions[posCounter].position;
             posCounter++;
         }
     }

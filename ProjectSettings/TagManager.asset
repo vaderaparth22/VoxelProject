@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Rocket
   - EnemyNormal
+  - Enemy
+  - EnemyFlame
   layers:
   - Default
   - TransparentFX

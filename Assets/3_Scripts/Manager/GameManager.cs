@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        objectPooler = Instantiate<ObjectPooler>(Resources.Load<ObjectPooler>("Prefabs/ObjectPooler"));
-        EnemyManager.Instance.Init(this.enemyInfo);
+        InitializeObjectPooler();
     }
 
     private void Start()
@@ -23,12 +22,20 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    private void InitializeObjectPooler()
+    {
+        objectPooler = Instantiate<ObjectPooler>(Resources.Load<ObjectPooler>("Prefabs/ObjectPooler"));
+
+        objectPooler.onPoolFinished.AddListener(() => EnemyManager.Instance.Init(this.enemyInfo));
+        objectPooler.Init();
+    }
 }
 
 [System.Serializable]
 public class EnemyInfo
 {
     public int startSpawnAmount;
-    public Transform[] spawningPositions;
+    public Transform spawnLocationParent;
     public List<Enemy> listOfLiveEnemies;
 }
