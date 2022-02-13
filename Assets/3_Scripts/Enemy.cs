@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected EnemyType type;
     [SerializeField] protected float health;
     [SerializeField] protected float damage;
-    [SerializeField] protected float timeBetweenAttacks;
+    [SerializeField, Range(1f, 5f)] protected float timeBetweenAttacks;
 
     protected virtual Vector3 PlayerDistance
     {
